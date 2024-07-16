@@ -1,0 +1,53 @@
+.home{
+    min-height: 100vh;
+    background: #fff;
+    color: #000;
+}
+
+.flex{
+    display: flex;
+}
+
+.items-center{
+    align-items: center;
+}
+
+.navbar{
+    justify-content: space-between;
+    background: black;
+    color: white;
+    padding: 0;
+    height: 50px;
+}
+
+.nav-details{
+    gap: 30px;
+    height: 100%;
+}
+
+.nav-doc-name{
+    gap: 10px;
+}
+
+.hamburger{
+    padding: 10px;
+    border-radius: 0;
+    border: solid 1px #333;
+    background: #333;
+    height: 100%;
+}
+
+.nav-action-buttons{
+    gap: 10px;
+}
+
+.delete-btn{
+    background: none;
+    border: none;
+}
+
+.save-btn{
+    gap: 10px;
+    padding: 5px;
+    margin: 10px;
+}
