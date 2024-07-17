@@ -12,24 +12,23 @@ const Markdown = ({
   setMarkdownText,
   showMarkdown,
 }: MarkdownProps) => {
-  return (
-    showMarkdown ? (
-      <div className="markdown">
-        <HeroHeader>
-          <p className="hero-header-title">markdown</p>
-        </HeroHeader>
+  return showMarkdown ? (
+    <div className="markdown">
+      <HeroHeader>
+        <p className="hero-header-title">markdown</p>
+      </HeroHeader>
 
-        <textarea
-          className="markdown-textarea"
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setMarkdownText(e.target.value)
-          }
-        >
-          {markdownText}
-        </textarea>
-      </div>
-    )
-    : <div></div>
+      <textarea
+        className="markdown-textarea"
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          setMarkdownText(e.target.value)
+        }
+      >
+        {markdownText}
+      </textarea>
+    </div>
+  ) : (
+    <div></div>
   );
 };
 
