@@ -2,6 +2,8 @@
     min-height: 100vh;
     background: #fff;
     color: #000;
+    display: flex;
+    flex-direction: column;
 }
 
 .flex{
@@ -10,6 +12,10 @@
 
 .items-center{
     align-items: center;
+}
+
+.justify-between{
+    justify-content: space-between;
 }
 
 .navbar{
@@ -75,4 +81,19 @@
     background: #E46643;
     border: none;
     border-radius: 3px;
+}
+
+.hero{
+    flex: 1;
+    height: 100%;
+    background: green;
+}
+
+.markdown, .preview{
+    flex: 1;
+    min-height: 100%;
+}
+
+.markdown{
+    background: red;
 }

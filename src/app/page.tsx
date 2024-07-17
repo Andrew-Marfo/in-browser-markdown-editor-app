@@ -9,7 +9,7 @@ export default function Home() {
     <div className="home">
       {/* navbar */}
       <Navbar />
-      <div>
+      <div className="hero flex justify-between">
         <Markdown/>
         <Preview/>
       </div>
