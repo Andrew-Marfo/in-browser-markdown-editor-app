@@ -6,10 +6,9 @@ const  Preview=() =>{
   return (
     <div className='preview'>
         <HeroHeader>
-            <p>preview</p>
-            <Image src={"/assets/icon-show-preview.svg"} alt='show preview' width={13} height={13}/>
+            <p className='hero-header-title'>preview</p>
+            <Image src={"/assets/icon-show-preview.svg"} alt='show preview' width={13} height={10}/>
         </HeroHeader>
-        <p>preview</p>
     </div>
   )
 }

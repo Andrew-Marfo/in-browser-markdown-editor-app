@@ -4,9 +4,8 @@ import HeroHeader from "./hero_header";
 const Markdown = () => {
   return <div className="markdown">
     <HeroHeader>
-      <p>markdown</p>
+      <p className="hero-header-title">markdown</p>
     </HeroHeader>
-    <p>markdown</p>
   </div>;
 };
 
