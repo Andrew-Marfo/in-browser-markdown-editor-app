@@ -155,4 +155,14 @@
     background: #2B2D31;
     color: white;
     padding: 10px;
+    position: absolute;
+    left: -300px;
+    transition: 0.3s ease-in-out;
+
+    
+}
+
+.show-sidebar{
+    left: 0;
+    position: relative;
 }

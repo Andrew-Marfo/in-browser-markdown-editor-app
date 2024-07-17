@@ -11,21 +11,24 @@ import Sidebar from "@/components/sidebar";
 export default function Home() {
   const [markdownText, setMarkdownText] = useState("");
   const [showMarkdown, setShowMarkdown] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false)
 
-  const toggleShowMarkdown = () => {
+  const toggleSideBar = () => {
+    setShowSidebar(prev => !showSidebar);
+  }
+
+  const toggleMarkdown = () => {
     setShowMarkdown((prev) => !prev);
   };
-
-  console.log(markdownText);
 
   return (
     <div className="home">
       {/* sidebar */}
-      <Sidebar />
+      <Sidebar showSidebar={showSidebar}/>
 
       <div className="home-container">
         {/* navbar */}
-        <Navbar />
+        <Navbar toggleSideBar={toggleSideBar} showSidebar={showSidebar}/>
 
         {/* hero */}
         <div className="hero flex justify-between">
@@ -39,7 +42,7 @@ export default function Home() {
           {/* preview */}
           <Preview
             markdownText={markdownText}
-            toggleShowMarkdown={toggleShowMarkdown}
+            toggleMarkdown={toggleMarkdown}
             showMarkdown={showMarkdown}
           />
         </div>

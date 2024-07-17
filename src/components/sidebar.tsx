@@ -1,73 +1,49 @@
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
-const Sidebar = () => {
-  return (
-    <div className='sidebar'>
-        <p>sidebar</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-        <p>klsdjksldkj</p>
-    </div>
-  )
+interface SidebarProps {
+  showSidebar: boolean;
 }
 
-export default Sidebar
+const Sidebar = ({ showSidebar }: SidebarProps) => {
+  return (
+    <div className={`sidebar ${showSidebar && "show-sidebar"}`}>
+      <p>my documents</p>
+
+      <button>new document</button>
+
+      <div className="document-list">
+        <div className="document-item nav-doc-name flex items-center">
+          <div>
+            <Image
+              src="/assets/icon-document.svg"
+              alt="link"
+              width={10}
+              height={13}
+            />
+          </div>
+          <div>
+            <p className="doc-name-title">01 April 2022</p>
+            <p className="doc-name">welcome.md</p>
+          </div>
+        </div>
+        <div className="document-item nav-doc-name flex items-center">
+          <div>
+            <Image
+              src="/assets/icon-document.svg"
+              alt="link"
+              width={10}
+              height={13}
+            />
+          </div>
+          <div>
+            <p className="doc-name-title">01 April 2022</p>
+            <p className="doc-name">welcome.md</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;

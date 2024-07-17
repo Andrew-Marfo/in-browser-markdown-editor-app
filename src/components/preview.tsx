@@ -5,18 +5,18 @@ import { marked } from "marked";
 
 interface PreviewProps {
   markdownText: string;
-  toggleShowMarkdown: () => void;
+  toggleMarkdown: () => void;
   showMarkdown: boolean;
 }
 
-const Preview = ({ markdownText, toggleShowMarkdown, showMarkdown }: PreviewProps) => {
+const Preview = ({ markdownText, toggleMarkdown, showMarkdown }: PreviewProps) => {
   const parsed = marked.parse(markdownText);
   //   const parsed = marked.parse(markdownText);
   return (
     <div className="preview">
       <HeroHeader>
         <p className="hero-header-title">preview</p>
-        <button onClick={toggleShowMarkdown} className="eye-toggle-btn">
+        <button onClick={toggleMarkdown} className="eye-toggle-btn">
           {showMarkdown ? <Image
             src={"/assets/icon-show-preview.svg"}
             alt="show preview"
