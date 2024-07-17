@@ -100,6 +100,30 @@ a {
   text-decoration: none;
 }
 
+button{
+  cursor: pointer;
+}
+
+::-webkit-scrollbar{
+  width: 2px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track{
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #575a57;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+
+  background-color: #575a57;
+  border-radius: 10px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
