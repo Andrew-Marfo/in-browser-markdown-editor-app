@@ -5,21 +5,30 @@ import { marked } from "marked";
 
 interface PreviewProps {
   markdownText: string;
+  toggleShowMarkdown: () => void;
+  showMarkdown: boolean;
 }
 
-const Preview = ({ markdownText }: PreviewProps) => {
+const Preview = ({ markdownText, toggleShowMarkdown, showMarkdown }: PreviewProps) => {
   const parsed = marked.parse(markdownText);
   //   const parsed = marked.parse(markdownText);
   return (
     <div className="preview">
       <HeroHeader>
         <p className="hero-header-title">preview</p>
-        <Image
-          src={"/assets/icon-show-preview.svg"}
+        <button onClick={toggleShowMarkdown} className="eye-toggle-btn">
+          {showMarkdown ? <Image
+            src={"/assets/icon-show-preview.svg"}
+            alt="show preview"
+            width={15}
+            height={10}
+          /> : <Image
+          src={"/assets/icon-hide-preview.svg"}
           alt="show preview"
-          width={13}
+          width={15}
           height={10}
-        />
+        />}
+        </button>
       </HeroHeader>
 
       {/* <textarea className="markdown-textarea" disabled></textarea> */}

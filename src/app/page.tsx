@@ -9,6 +9,11 @@ import { useState } from "react";
 
 export default function Home() {
   const [markdownText, setMarkdownText] = useState("")
+  const [showMarkdown, setShowMarkdown] = useState(true)
+
+  const toggleShowMarkdown = () => {
+    setShowMarkdown(prev => !prev)
+  }
 
   // const handleMarkdownText = (value) => {
   //   setMarkdownText(value)
@@ -20,8 +25,8 @@ export default function Home() {
       {/* navbar */}
       <Navbar />
       <div className="hero flex justify-between">
-        <Markdown markdownText={markdownText} setMarkdownText={setMarkdownText}/>
-        <Preview markdownText={markdownText}/>
+        <Markdown markdownText={markdownText} setMarkdownText={setMarkdownText} showMarkdown={showMarkdown}/>
+        <Preview markdownText={markdownText} toggleShowMarkdown={toggleShowMarkdown} showMarkdown={showMarkdown}/>
       </div>
     </div>
   );
