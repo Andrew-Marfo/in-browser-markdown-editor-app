@@ -8,11 +8,11 @@ interface SidebarProps {
 const Sidebar = ({ showSidebar }: SidebarProps) => {
   return (
     <div className={`sidebar ${showSidebar && "show-sidebar"}`}>
-      <p>my documents</p>
+      <p className="sidebar-title">my documents</p>
 
-      <button>new document</button>
+      <button className="new-doc-btn "> + new document</button>
 
-      <div className="document-list">
+      <div className="document-list flex flex-col">
         <div className="document-item nav-doc-name flex items-center">
           <div>
             <Image

@@ -42,7 +42,8 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
           </div>
           <div>
             <p className="doc-name-title">Document Name</p>
-            <p className="doc-name">welcome.md</p>
+            
+            <input type="text" className="doc-name doc-name-input" placeholder="welcome.md" value={"welcome.md"}/>
           </div>
         </div>
       </div>
