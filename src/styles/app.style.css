@@ -91,6 +91,8 @@
 .markdown, .preview{
     flex: 1;
     min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .markdown{
@@ -109,4 +111,26 @@
     color: #7C8187;
     font-size: 11px;
     font-weight: 600;
+}
+
+.markdown-textarea{
+    flex: 1;
+    min-width: 100%;
+    max-width: 100%;
+    background: #fff;
+    color: #000;
+    border: none;
+    outline: none;
+    padding: 10px;
+}
+
+.preview-container{
+    flex: 1;
+    padding: 10px 30px;
+}
+
+.preview-items{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
