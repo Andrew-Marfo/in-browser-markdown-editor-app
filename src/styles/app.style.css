@@ -332,6 +332,9 @@ code{
   display: none;
 }
 
+.show-toggle-btn{
+  display: none;
+}
 
 
 /* tablet view */
@@ -346,6 +349,21 @@ code{
 
   .preview-items-center{
     width: 100%;
+  }
+  
+}
+
+@media screen and (max-width: 500px) {
+  .show-toggle-btn{
+    display: block;
+  }
+
+  .show-preview, .show-markdown{
+    display: flex;
+  }
+
+  .hide-preview, .hide-markdown{
+    display: none;
   }
   
 }

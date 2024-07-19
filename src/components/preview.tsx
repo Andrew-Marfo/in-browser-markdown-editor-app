@@ -22,7 +22,7 @@ const Preview = ({ markdownText, toggleMarkdown, showMarkdown }: PreviewProps) =
   const parsed = marked.parse(content);
   //   const parsed = marked.parse(markdownText);
   return (
-    <div className="preview">
+    <div className={`preview  ${showMarkdown ?" hide-preview" : "show-preview"}`}>
       <HeroHeader>
         <p className="hero-header-title">preview</p>
         <button onClick={toggleMarkdown} className="eye-toggle-btn">

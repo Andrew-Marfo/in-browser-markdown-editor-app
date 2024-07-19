@@ -46,6 +46,7 @@ export default function Home() {
               markdownText={markdownText}
               setMarkdownText={setMarkdownText}
               showMarkdown={showMarkdown}
+              toggleMarkdown={toggleMarkdown}
             />
 
             {/* preview */}
