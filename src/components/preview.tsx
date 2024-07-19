@@ -1,7 +1,10 @@
-import React from "react";
+"use client"
+
+import React, { useContext } from "react";
 import HeroHeader from "./hero_header";
 import Image from "next/image";
 import { marked } from "marked";
+import { DocumentContext } from "@/service/document.context";
 
 interface PreviewProps {
   markdownText: string;
@@ -10,7 +13,13 @@ interface PreviewProps {
 }
 
 const Preview = ({ markdownText, toggleMarkdown, showMarkdown }: PreviewProps) => {
-  const parsed = marked.parse(markdownText);
+  const context = useContext(DocumentContext);
+
+  if (!context) throw new Error("Document Context no found");
+
+  const { content } = context;
+
+  const parsed = marked.parse(content);
   //   const parsed = marked.parse(markdownText);
   return (
     <div className="preview">

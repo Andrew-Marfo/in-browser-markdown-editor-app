@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useContext } from "react";
 import HeroHeader from "./hero_header";
+import { DocumentContext } from "@/service/document.context";
 
 interface MarkdownProps {
   markdownText: string;
@@ -12,6 +15,14 @@ const Markdown = ({
   setMarkdownText,
   showMarkdown,
 }: MarkdownProps) => {
+  const context = useContext(DocumentContext);
+
+  if (!context) throw new Error("Document Context no found");
+
+  const { content, handleContent } = context;
+
+  console.log(content);
+
   return showMarkdown ? (
     <div className="markdown">
       <HeroHeader>
@@ -21,11 +32,10 @@ const Markdown = ({
       <textarea
         className="markdown-textarea"
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-          setMarkdownText(e.target.value)
+          handleContent(e.target.value)
         }
-      >
-        {markdownText}
-      </textarea>
+        value={content}
+      />
     </div>
   ) : (
     <div></div>

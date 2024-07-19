@@ -15,7 +15,7 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
 
   if (!context) throw new Error("Document Context no found");
 
-  const { handleName, name, getDoc } = context;
+  const { handleName, name, saveDoc } = context;
 
   return (
     <div className="navbar flex items-center">
@@ -69,7 +69,7 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
             height={13}
           />
         </button>
-        <button className="save-btn flex items-center">
+        <button className="save-btn flex items-center" onClick={saveDoc}>
           <Image
             src="/assets/icon-save.svg"
             alt="link"

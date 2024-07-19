@@ -1,29 +1,27 @@
 "use client";
 
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface Documents {
-    createdAt: string;
-    name: string;
-    content: string;
+  createdAt: string;
+  name: string;
+  content: string;
 }
 
-
-
 interface DocumentContextType {
-    getDocs: () => void;
-    getDoc: (value: string) => void;
-    saveDoc: () => void;
-    deleteDoc: (value: string) => void;
-    handleName: (value: string) => void;
-    handleContent: (value: string) => void;
-    createDoc: () => void;
+  getDocs: () => void;
+  getDoc: (value: string) => void;
+  saveDoc: () => void;
+  deleteDoc: (value: string) => void;
+  handleName: (value: string) => void;
+  handleContent: (value: string) => void;
+  createDoc: () => void;
 
-    documents: Documents[];
-    currentDocument: Documents | undefined;
-    name: string;
-    content: string;
-    createdAt: string;
+  documents: Documents[];
+  currentDocument: Documents | undefined;
+  name: string;
+  content: string;
+  createdAt: string;
 }
 
 interface DocumentContextProviderProps {
@@ -38,61 +36,98 @@ export const DocumentContextProvider = ({
   children,
 }: DocumentContextProviderProps) => {
   const [documents, setDocuments] = useState<Documents[]>([]);
-  const [currentDocument, setCurrentDocument] = useState<Documents | undefined>(undefined);
-  const [name, setName] = useState("")
-  const [content, setContent] = useState("")
-  const [createdAt, setCreatedAt] = useState("")
+  const [currentDocument, setCurrentDocument] = useState<Documents | undefined>(
+    undefined
+  );
+  const [name, setName] = useState("");
+  const [content, setContent] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
+
+  const formatDateToLongForm = (date: Date): string => {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    return `${day} ${months[month]} ${year}`;
+  };
 
   const handleName = (value: string) => {
-    setName(value)
-  }
+    setName(value);
+  };
+
   const handleContent = (value: string) => {
-    setContent(value)
-  }
-  const handleDate = (value: string) => {
-    setCreatedAt(value)
-  }
+    setContent(value);
+  };
 
   const getDocs = () => {
-    const docs = localStorage.getItem("docs")
+    const docs = localStorage.getItem("docs");
 
-    if(docs){
-        setDocuments(JSON.parse(docs))
+    if (docs) {
+      setDocuments(JSON.parse(docs));
     }
-  }
+  };
+
+  useEffect(() => {
+    getDocs()
+  }, [])
 
   const getDoc = (value: string) => {
-    if(documents){
-        const doc = documents.find(item => item?.name === value)
+    if (documents) {
+      const doc = documents.find((item) => item?.name === value);
 
-        // doc && setCurrentDocument(doc)
-        if(doc){
-            setName(doc?.name)
-            setContent(doc?.content)
-            setCreatedAt(doc?.createdAt)
-        }
+      // doc && setCurrentDocument(doc)
+      if (doc) {
+        setName(doc?.name);
+        setContent(doc?.content);
+        setCreatedAt(doc?.createdAt);
+      }
     }
-  }
+  };
 
   const saveDoc = () => {
-    const doc = {name, content, createdAt}
+    const docExists = documents.find((item) => item?.name === name);
 
-    const newDocs = [...documents, doc]
+    let newDocs;
+    if (docExists) {
+      newDocs = documents.map((item) =>
+        item?.name == name ? { ...item, content } : item
+      );
+    } else {
+      const doc = {
+        name,
+        content,
+        createdAt: formatDateToLongForm(new Date()),
+      };
+      newDocs = [...documents, doc];
+    }
 
-    localStorage.setItem("docs", JSON.stringify(newDocs))
-    setDocuments(newDocs)
-  }
+    localStorage.setItem("docs", JSON.stringify(newDocs));
+    setDocuments(newDocs);
+  };
 
   const deleteDoc = (value: string) => {
-    const filteredDoc = documents.filter(item => item?.name !== value)
-    
-    localStorage.setItem("docs", JSON.stringify(filteredDoc))
-    setDocuments(filteredDoc)
-  }
-  
-  const createDoc = () => {
+    const filteredDoc = documents.filter((item) => item?.name !== value);
 
-  }
+    localStorage.setItem("docs", JSON.stringify(filteredDoc));
+    setDocuments(filteredDoc);
+  };
+
+  const createDoc = () => {};
 
   const value = {
     documents,
@@ -106,7 +141,7 @@ export const DocumentContextProvider = ({
     createDoc,
     name,
     content,
-    createdAt
+    createdAt,
   };
   return (
     <DocumentContext.Provider value={value}>
