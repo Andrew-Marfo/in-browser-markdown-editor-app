@@ -35,14 +35,14 @@ export const DocumentContext = createContext<DocumentContextType | undefined>(
 export const DocumentContextProvider = ({
   children,
 }: DocumentContextProviderProps) => {
+  // state variables
   const [documents, setDocuments] = useState<Documents[]>([]);
-  const [currentDocument, setCurrentDocument] = useState<Documents | undefined>(
-    undefined
-  );
+  const [currentDocument, setCurrentDocument] = useState(undefined);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [createdAt, setCreatedAt] = useState("");
 
+  // format date to "day-month-year; 01 April 2024"
   const formatDateToLongForm = (date: Date): string => {
     const day = String(date.getDate()).padStart(2, "0");
     const month = date.getMonth();
@@ -66,14 +66,17 @@ export const DocumentContextProvider = ({
     return `${day} ${months[month]} ${year}`;
   };
 
+  //   update name state when there is a change
   const handleName = (value: string) => {
     setName(value);
   };
 
+  //   update content state when there is a change
   const handleContent = (value: string) => {
     setContent(value);
   };
 
+  //   fetch documents from localStorage if any
   const getDocs = () => {
     const docs = localStorage.getItem("docs");
 
@@ -82,10 +85,12 @@ export const DocumentContextProvider = ({
     }
   };
 
+  //   runs getDocs function once when mounted
   useEffect(() => {
-    getDocs()
-  }, [])
+    getDocs();
+  }, []);
 
+  //   fetch a document from object name
   const getDoc = (value: string) => {
     if (documents) {
       const doc = documents.find((item) => item?.name === value);
@@ -99,6 +104,7 @@ export const DocumentContextProvider = ({
     }
   };
 
+  //   save a document
   const saveDoc = () => {
     const docExists = documents.find((item) => item?.name === name);
 
@@ -120,6 +126,7 @@ export const DocumentContextProvider = ({
     setDocuments(newDocs);
   };
 
+  //   delete a document
   const deleteDoc = (value: string) => {
     const filteredDoc = documents.filter((item) => item?.name !== value);
 
@@ -127,8 +134,10 @@ export const DocumentContextProvider = ({
     setDocuments(filteredDoc);
   };
 
+  //   create a new document
   const createDoc = () => {};
 
+  //   pass values to children
   const value = {
     documents,
     currentDocument,
@@ -143,6 +152,7 @@ export const DocumentContextProvider = ({
     content,
     createdAt,
   };
+
   return (
     <DocumentContext.Provider value={value}>
       {children}
