@@ -32,7 +32,7 @@
 }
 
 .home-container {
-  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -81,6 +81,7 @@
     border-bottom: solid 1px #2b2d31;
     background: none;
     outline: none;
+
 }
 
 input.error{
@@ -165,7 +166,7 @@ input.error{
   padding: 10px 30px;
   overflow: auto;
   display: flex;
-  justify-content: center;
+  
 }
 
 .preview-items {
@@ -246,7 +247,7 @@ code{
 }
 
 .sidebar {
-  width: 200px;
+  min-width: 200px;
   height: 100%;
   overflow-y: auto;
   background: #2b2d31;
@@ -268,6 +269,7 @@ code{
 
 .sidebar-title {
   text-transform: capitalize;
+  color: #7C8187;
 }
 
 .new-doc-btn {
@@ -362,7 +364,7 @@ code{
     display: flex;
   }
 
-  .hide-preview, .hide-markdown{
+  .hide-preview, .hide-markdown, .hide-save-changes{
     display: none;
   }
   

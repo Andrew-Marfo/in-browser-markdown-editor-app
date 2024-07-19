@@ -135,6 +135,7 @@ export const DocumentContextProvider = ({
 
   //   delete a document
   const deleteDoc = () => {
+    
     const filteredDoc = documents.filter((item) => item?.name !== name);
 
     localStorage.setItem("docs", JSON.stringify(filteredDoc));
@@ -142,7 +143,10 @@ export const DocumentContextProvider = ({
   };
 
   //   create a new document
-  const createDoc = () => {};
+  const createDoc = () => {
+    setName("");
+    setContent("")
+  };
 
   //   pass values to children
   const value = {

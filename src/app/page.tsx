@@ -33,7 +33,7 @@ export default function Home() {
       {showModal && <DeleteModal toggleModal={toggleModal}/>}
       <div className="home">
         {/* sidebar */}
-        <Sidebar showSidebar={showSidebar} />
+        <Sidebar showSidebar={showSidebar} toggleSideBar={toggleSideBar}/>
 
         <div className="home-container">
           {/* navbar */}

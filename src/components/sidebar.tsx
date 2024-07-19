@@ -6,25 +6,38 @@ import React, { useContext } from "react";
 
 interface SidebarProps {
   showSidebar: boolean;
+  toggleSideBar: () => void;
 }
 
-const Sidebar = ({ showSidebar }: SidebarProps) => {
+const Sidebar = ({ showSidebar, toggleSideBar }: SidebarProps) => {
   const context = useContext(DocumentContext);
 
   if (!context) throw new Error("Document Context no found");
 
-  const { documents, getDoc } = context;
+  const { documents, getDoc, createDoc } = context;
   return (
     <div className={`sidebar ${showSidebar && "show-sidebar"}`}>
       <p className="markdown-title show-sidebar-markdown-title">markdown</p>
       <p className="sidebar-title">my documents</p>
 
-      <button className="new-doc-btn "> + new document</button>
+      <button
+        className="new-doc-btn"
+        onClick={() => {
+          createDoc();
+          toggleSideBar();
+        }}
+      >
+        + new document
+      </button>
 
       <div className="document-list flex flex-col">
         {documents.map((doc) => {
           return (
-            <button key={doc?.name} onClick={() => getDoc(doc?.name)} className="document-item nav-doc-name flex items-center">
+            <button
+              key={doc?.name}
+              onClick={() => getDoc(doc?.name)}
+              className="document-item nav-doc-name flex items-center"
+            >
               <div>
                 <Image
                   src="/assets/icon-document.svg"

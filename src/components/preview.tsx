@@ -42,7 +42,7 @@ const Preview = ({ markdownText, toggleMarkdown, showMarkdown }: PreviewProps) =
 
       {/* <textarea className="markdown-textarea" disabled></textarea> */}
       {/* {parsed} */}
-      <div className="preview-container">
+      <div className={`preview-container ${!showMarkdown && "justify-center"}`}>
         <div
           dangerouslySetInnerHTML={{ __html: parsed }}
           className={`preview-items ${!showMarkdown && "preview-items-center"}`}

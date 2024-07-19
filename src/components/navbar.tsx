@@ -63,7 +63,7 @@ const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
 
       <div className="nav-action-buttons flex items-center">
         {/* delete button */}
-        <button className="delete-btn" onClick={toggleModal}>
+        <button className="delete-btn" onClick={()=>name.trim() && toggleModal}>
           <Image
             src="/assets/icon-delete.svg"
             alt="link"
@@ -80,7 +80,7 @@ const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
             width={13}
             height={13}
           />
-          Save Changes
+          <div className="hide-save-changes">Save Changes</div>
         </button>
       </div>
     </div>
