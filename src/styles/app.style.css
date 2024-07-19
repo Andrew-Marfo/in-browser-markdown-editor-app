@@ -154,7 +154,7 @@ input.error{
   max-width: 100%;
   overflow: auto;
   background: #fff;
-  color: #000;
+  color: #35393F;
   border: none;
   outline: none;
   padding: 10px;
@@ -170,6 +170,68 @@ input.error{
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+}
+
+.preview .preview-items p, .preview .preview-items li{
+  color: #7C8187;
+  font-size: 14px;
+}
+
+ol{
+  padding-left: 40px;  
+}
+
+ul {
+  padding-left: 20px;  
+  list-style: none; 
+}
+
+ul li {
+  position: relative;
+  padding-left: 1.5em; 
+  line-height: 1.5em; 
+}
+
+ul li::before {
+  content: '\2022'; 
+  color: #E46643; 
+  position: absolute;
+  left: 0;
+  font-size: 20px; 
+}
+
+.preview h6{
+  color: #E46643; 
+
+}
+
+pre{
+  background: #F5F5F5;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+
+
+.preview .preview-items blockquote{
+  border-left: solid 4px #e46643;
+  padding: 10px;
+  border-radius: 3px;
+  background: #F5F5F5;
+  
+}
+
+.preview .preview-items blockquote p{
+  color: #35393F;
+}
+
+.preview .preview-items a{
+  text-decoration: underline;
+}
+
+code{
+  color: #35393F;
 }
 
 .eye-toggle-btn {
@@ -259,3 +321,10 @@ input.error{
   border: none;
   border-radius: 5px;
 }
+
+.show-sidebar-markdown-title{
+  display: none;
+}
+
+
+

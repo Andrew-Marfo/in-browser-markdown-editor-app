@@ -18,8 +18,6 @@ const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
 
   const { handleName, name, saveDoc, error } = context;
 
-  console.log(error)
-
   return (
     <div className="navbar flex items-center">
       <div className="nav-details flex items-center">
@@ -42,8 +40,8 @@ const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
           )}
         </button>
 
-        <p className="markdown-title">markdown</p>
-        <p className="separator">|</p>
+        <p className="markdown-title hide-nav-markdown-title ">markdown</p>
+        <p className="separator hide-nav-separator">|</p>
 
         {/* document details */}
         <div className="nav-doc-name flex items-center">

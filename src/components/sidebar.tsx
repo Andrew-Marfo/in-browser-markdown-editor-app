@@ -16,6 +16,7 @@ const Sidebar = ({ showSidebar }: SidebarProps) => {
   const { documents, getDoc } = context;
   return (
     <div className={`sidebar ${showSidebar && "show-sidebar"}`}>
+      <p className="markdown-title show-sidebar-markdown-title">markdown</p>
       <p className="sidebar-title">my documents</p>
 
       <button className="new-doc-btn "> + new document</button>
