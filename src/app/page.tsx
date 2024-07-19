@@ -9,6 +9,7 @@ import { useState } from "react";
 import Sidebar from "@/components/sidebar";
 import { DocumentContextProvider } from "@/service/document.context";
 import DeleteModal from "@/components/delete.modal";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [markdownText, setMarkdownText] = useState("");
@@ -30,6 +31,7 @@ export default function Home() {
 
   return (
     <DocumentContextProvider>
+      <Toaster />
       {showModal && <DeleteModal toggleModal={toggleModal}/>}
       <div className="home">
         {/* sidebar */}

@@ -16,7 +16,7 @@ const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
 
   if (!context) throw new Error("Document Context no found");
 
-  const { handleName, name, saveDoc, error } = context;
+  const { handleName, name, saveDoc } = context;
 
   return (
     <div className="navbar flex items-center">
@@ -56,14 +56,14 @@ const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
           <div>
             <p className="doc-name-title">Document Name</p>
             
-            <input type="text" className={`doc-name doc-name-input ${error && "error"}`} placeholder="untitled-doc.md" value={name} onChange={e => handleName(e.target.value)}/>
+            <input type="text" className={`doc-name doc-name-input`} placeholder="untitled-doc.md" value={name} onChange={e => handleName(e.target.value)}/>
           </div>
         </div>
       </div>
 
       <div className="nav-action-buttons flex items-center">
         {/* delete button */}
-        <button className="delete-btn" onClick={()=>name.trim() && toggleModal}>
+        <button className="delete-btn" onClick={toggleModal}>
           <Image
             src="/assets/icon-delete.svg"
             alt="link"
@@ -73,7 +73,7 @@ const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
         </button>
 
         {/* save button */}
-        <button className="save-btn flex items-center" onClick={saveDoc}>
+        <button className="save-btn flex items-center btn-hover" onClick={saveDoc}>
           <Image
             src="/assets/icon-save.svg"
             alt="link"

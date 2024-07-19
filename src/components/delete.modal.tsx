@@ -29,7 +29,7 @@ const DeleteModal = ({ toggleModal }: DeleteModalProps) => {
             deleteDoc();
             toggleModal();
           }}
-          className="confirm-delete-btn"
+          className="confirm-delete-btn btn-hover"
         >
           Confirm &amp; Delete
         </button>

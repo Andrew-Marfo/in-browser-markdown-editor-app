@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, ReactNode, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface Documents {
   createdAt: string;
@@ -108,7 +109,6 @@ export const DocumentContextProvider = ({
 
   //   save a document
   const saveDoc = () => {
-    setError("");
     if (name.trim()) {
       const docExists = documents.find((item) => item?.name === name);
 
@@ -128,24 +128,26 @@ export const DocumentContextProvider = ({
 
       localStorage.setItem("docs", JSON.stringify(newDocs));
       setDocuments(newDocs);
+      toast.success("saved");
     } else {
-      setError("File name required");
+      toast.error("filename required");
     }
   };
 
   //   delete a document
   const deleteDoc = () => {
-    
     const filteredDoc = documents.filter((item) => item?.name !== name);
-
     localStorage.setItem("docs", JSON.stringify(filteredDoc));
     setDocuments(filteredDoc);
+    setName("");
+    setContent("");
+    toast.success("deleted");
   };
 
   //   create a new document
   const createDoc = () => {
     setName("");
-    setContent("")
+    setContent("");
   };
 
   //   pass values to children
@@ -162,7 +164,7 @@ export const DocumentContextProvider = ({
     name,
     content,
     createdAt,
-    error
+    error,
   };
 
   return (

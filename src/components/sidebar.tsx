@@ -21,7 +21,7 @@ const Sidebar = ({ showSidebar, toggleSideBar }: SidebarProps) => {
       <p className="sidebar-title">my documents</p>
 
       <button
-        className="new-doc-btn"
+        className="new-doc-btn btn-hover"
         onClick={() => {
           createDoc();
           toggleSideBar();

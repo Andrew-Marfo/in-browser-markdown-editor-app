@@ -22,6 +22,10 @@
   flex: 1;
 }
 
+.btn-hover:hover{
+  background: #F39765;
+}
+
 
 .home {
   height: 100vh;
