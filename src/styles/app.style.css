@@ -164,6 +164,8 @@ input.error{
   flex: 1;
   padding: 10px 30px;
   overflow: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .preview-items {
@@ -171,6 +173,10 @@ input.error{
   flex-direction: column;
   gap: 20px;
 
+}
+
+.preview-items-center{
+  width: 50%;
 }
 
 .preview .preview-items p, .preview .preview-items li{
@@ -328,3 +334,18 @@ code{
 
 
 
+/* tablet view */
+@media screen and (max-width: 790px) {
+  .hide-nav-markdown-title, .hide-nav-separator{
+    display: none;
+  }
+
+  .show-sidebar-markdown-title{
+    display: block;
+  }
+
+  .preview-items-center{
+    width: 100%;
+  }
+  
+}

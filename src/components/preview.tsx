@@ -45,7 +45,7 @@ const Preview = ({ markdownText, toggleMarkdown, showMarkdown }: PreviewProps) =
       <div className="preview-container">
         <div
           dangerouslySetInnerHTML={{ __html: parsed }}
-          className="preview-items"
+          className={`preview-items ${!showMarkdown && "preview-items-center"}`}
         />
       </div>
     </div>
