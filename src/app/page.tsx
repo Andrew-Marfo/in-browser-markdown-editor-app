@@ -10,6 +10,7 @@ import Sidebar from "@/components/sidebar";
 import { DocumentContextProvider } from "@/service/document.context";
 import DeleteModal from "@/components/delete.modal";
 import { Toaster } from "react-hot-toast";
+import { ThemeContextProvider } from "@/service/theme.context";
 
 export default function Home() {
   const [markdownText, setMarkdownText] = useState("");
@@ -30,36 +31,42 @@ export default function Home() {
   };
 
   return (
-    <DocumentContextProvider>
-      <Toaster />
-      {showModal && <DeleteModal toggleModal={toggleModal}/>}
-      <div className="home">
-        {/* sidebar */}
-        <Sidebar showSidebar={showSidebar} toggleSideBar={toggleSideBar}/>
+    <ThemeContextProvider>
+      <DocumentContextProvider>
+        <Toaster />
+        {showModal && <DeleteModal toggleModal={toggleModal} />}
+        <div className="home">
+          {/* sidebar */}
+          <Sidebar showSidebar={showSidebar} toggleSideBar={toggleSideBar} />
 
-        <div className="home-container">
-          {/* navbar */}
-          <Navbar toggleSideBar={toggleSideBar} showSidebar={showSidebar} toggleModal={toggleModal}/>
-
-          {/* hero */}
-          <div className="hero flex justify-between">
-            {/* markdown */}
-            <Markdown
-              markdownText={markdownText}
-              setMarkdownText={setMarkdownText}
-              showMarkdown={showMarkdown}
-              toggleMarkdown={toggleMarkdown}
+          <div className="home-container">
+            {/* navbar */}
+            <Navbar
+              toggleSideBar={toggleSideBar}
+              showSidebar={showSidebar}
+              toggleModal={toggleModal}
             />
 
-            {/* preview */}
-            <Preview
-              markdownText={markdownText}
-              toggleMarkdown={toggleMarkdown}
-              showMarkdown={showMarkdown}
-            />
+            {/* hero */}
+            <div className="hero flex justify-between">
+              {/* markdown */}
+              <Markdown
+                markdownText={markdownText}
+                setMarkdownText={setMarkdownText}
+                showMarkdown={showMarkdown}
+                toggleMarkdown={toggleMarkdown}
+              />
+
+              {/* preview */}
+              <Preview
+                markdownText={markdownText}
+                toggleMarkdown={toggleMarkdown}
+                showMarkdown={showMarkdown}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </DocumentContextProvider>
+      </DocumentContextProvider>
+    </ThemeContextProvider>
   );
 }

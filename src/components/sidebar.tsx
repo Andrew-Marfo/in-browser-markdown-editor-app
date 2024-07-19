@@ -3,6 +3,7 @@
 import { DocumentContext } from "@/service/document.context";
 import Image from "next/image";
 import React, { useContext } from "react";
+import ThemeButton from "./theme-button";
 
 interface SidebarProps {
   showSidebar: boolean;
@@ -68,6 +69,8 @@ const Sidebar = ({ showSidebar, toggleSideBar }: SidebarProps) => {
           </div>
         </div> */}
       </div>
+
+      {/* <ThemeButton /> */}
     </div>
   );
 };
