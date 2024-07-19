@@ -13,11 +13,17 @@ interface Documents {
 interface DocumentContextType {
     getDocs: () => void;
     getDoc: (value: string) => void;
-    saveDoc: (value: Documents) => void;
+    saveDoc: () => void;
     deleteDoc: (value: string) => void;
+    handleName: (value: string) => void;
+    handleContent: (value: string) => void;
+    createDoc: () => void;
 
     documents: Documents[];
     currentDocument: Documents | undefined;
+    name: string;
+    content: string;
+    createdAt: string;
 }
 
 interface DocumentContextProviderProps {
@@ -33,6 +39,19 @@ export const DocumentContextProvider = ({
 }: DocumentContextProviderProps) => {
   const [documents, setDocuments] = useState<Documents[]>([]);
   const [currentDocument, setCurrentDocument] = useState<Documents | undefined>(undefined);
+  const [name, setName] = useState("")
+  const [content, setContent] = useState("")
+  const [createdAt, setCreatedAt] = useState("")
+
+  const handleName = (value: string) => {
+    setName(value)
+  }
+  const handleContent = (value: string) => {
+    setContent(value)
+  }
+  const handleDate = (value: string) => {
+    setCreatedAt(value)
+  }
 
   const getDocs = () => {
     const docs = localStorage.getItem("docs")
@@ -46,12 +65,19 @@ export const DocumentContextProvider = ({
     if(documents){
         const doc = documents.find(item => item?.name === value)
 
-        doc && setCurrentDocument(doc)
+        // doc && setCurrentDocument(doc)
+        if(doc){
+            setName(doc?.name)
+            setContent(doc?.content)
+            setCreatedAt(doc?.createdAt)
+        }
     }
   }
 
-  const saveDoc = (items: Documents) => {
-    const newDocs = [...documents, items]
+  const saveDoc = () => {
+    const doc = {name, content, createdAt}
+
+    const newDocs = [...documents, doc]
 
     localStorage.setItem("docs", JSON.stringify(newDocs))
     setDocuments(newDocs)
@@ -63,6 +89,10 @@ export const DocumentContextProvider = ({
     localStorage.setItem("docs", JSON.stringify(filteredDoc))
     setDocuments(filteredDoc)
   }
+  
+  const createDoc = () => {
+
+  }
 
   const value = {
     documents,
@@ -70,7 +100,13 @@ export const DocumentContextProvider = ({
     getDoc,
     getDocs,
     deleteDoc,
-    saveDoc
+    saveDoc,
+    handleContent,
+    handleName,
+    createDoc,
+    name,
+    content,
+    createdAt
   };
   return (
     <DocumentContext.Provider value={value}>

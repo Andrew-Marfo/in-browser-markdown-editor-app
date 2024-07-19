@@ -1,5 +1,8 @@
+"use client"
+
+import { DocumentContext } from "@/service/document.context";
 import Image from "next/image";
-import React from "react";
+import React, { useContext, useState } from "react";
 
 interface NavbarProps {
   toggleSideBar: () => void;
@@ -7,6 +10,13 @@ interface NavbarProps {
 }
 
 const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
+  
+  const context = useContext(DocumentContext);
+
+  if (!context) throw new Error("Document Context no found");
+
+  const { handleName, name, getDoc } = context;
+
   return (
     <div className="navbar flex items-center">
       <div className="nav-details flex items-center">
@@ -28,8 +38,10 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
             />
           )}
         </button>
+
         <p className="markdown-title">markdown</p>
         <p className="separator">|</p>
+
         {/* document name details */}
         <div className="nav-doc-name flex items-center">
           <div>
@@ -43,7 +55,7 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
           <div>
             <p className="doc-name-title">Document Name</p>
             
-            <input type="text" className="doc-name doc-name-input" placeholder="welcome.md" value={"welcome.md"}/>
+            <input type="text" className="doc-name doc-name-input" placeholder="untitled-doc.md" value={name} onChange={e => handleName(e.target.value)}/>
           </div>
         </div>
       </div>
