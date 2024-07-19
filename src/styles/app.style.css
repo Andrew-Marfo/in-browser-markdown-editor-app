@@ -10,6 +10,10 @@
   justify-content: space-between;
 }
 
+.justify-center{
+  justify-content: center;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -17,6 +21,7 @@
 .flex-1 {
   flex: 1;
 }
+
 
 .home {
   height: 100vh;
@@ -73,13 +78,17 @@
 
 .doc-name-input{
     border: none;
-    border-bottom: solid 1px #7c8187;
+    border-bottom: solid 1px #2b2d31;
     background: none;
     outline: none;
 }
 
+input.error{
+  border-bottom: solid 1px #e46643;
+}
+
 .doc-name-input:focus{
-    border-bottom-color: red;
+    border-bottom-color: white;
 }
 
 .hamburger {
@@ -204,4 +213,49 @@
 
 .document-list {
   gap: 20px;
+}
+
+.document-item{
+  border: none;
+  background: none;
+  text-align: left;
+}
+
+.delete-modal{
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+}
+
+.overflow{
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  background: #0000004c;
+  
+}
+
+.delete-modal-item{
+  z-index: 100;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  width: 300px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.delete-modal-item p{
+  font-size: 13px;
+}
+
+.confirm-delete-btn{
+  padding: 10px;
+  background:#e46643;
+  color: white;
+  border: none;
+  border-radius: 5px;
 }

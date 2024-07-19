@@ -23,7 +23,7 @@ const Sidebar = ({ showSidebar }: SidebarProps) => {
       <div className="document-list flex flex-col">
         {documents.map((doc) => {
           return (
-            <div key={doc?.name} onClick={() => getDoc(doc?.name)} className="document-item nav-doc-name flex items-center">
+            <button key={doc?.name} onClick={() => getDoc(doc?.name)} className="document-item nav-doc-name flex items-center">
               <div>
                 <Image
                   src="/assets/icon-document.svg"
@@ -36,7 +36,7 @@ const Sidebar = ({ showSidebar }: SidebarProps) => {
                 <p className="doc-name-title">{doc?.createdAt}</p>
                 <p className="doc-name">{doc?.name}</p>
               </div>
-            </div>
+            </button>
           );
         })}
         {/* <div className="document-item nav-doc-name flex items-center">

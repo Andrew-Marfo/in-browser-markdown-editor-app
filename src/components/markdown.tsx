@@ -21,8 +21,6 @@ const Markdown = ({
 
   const { content, handleContent } = context;
 
-  console.log(content);
-
   return showMarkdown ? (
     <div className="markdown">
       <HeroHeader>

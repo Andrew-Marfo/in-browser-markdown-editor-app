@@ -6,16 +6,19 @@ import React, { useContext, useState } from "react";
 
 interface NavbarProps {
   toggleSideBar: () => void;
+  toggleModal: () => void;
   showSidebar: boolean;
 }
 
-const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
+const Navbar = ({ toggleSideBar, showSidebar, toggleModal }: NavbarProps) => {
   
   const context = useContext(DocumentContext);
 
   if (!context) throw new Error("Document Context no found");
 
-  const { handleName, name, saveDoc } = context;
+  const { handleName, name, saveDoc, error } = context;
+
+  console.log(error)
 
   return (
     <div className="navbar flex items-center">
@@ -27,7 +30,7 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
               src="/assets/icon-close.svg"
               alt="hamburger"
               width={20}
-              height={13}
+              height={16}
             />
           ) : (
             <Image
@@ -42,7 +45,7 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
         <p className="markdown-title">markdown</p>
         <p className="separator">|</p>
 
-        {/* document name details */}
+        {/* document details */}
         <div className="nav-doc-name flex items-center">
           <div>
             <Image
@@ -55,13 +58,14 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
           <div>
             <p className="doc-name-title">Document Name</p>
             
-            <input type="text" className="doc-name doc-name-input" placeholder="untitled-doc.md" value={name} onChange={e => handleName(e.target.value)}/>
+            <input type="text" className={`doc-name doc-name-input ${error && "error"}`} placeholder="untitled-doc.md" value={name} onChange={e => handleName(e.target.value)}/>
           </div>
         </div>
       </div>
 
       <div className="nav-action-buttons flex items-center">
-        <button className="delete-btn">
+        {/* delete button */}
+        <button className="delete-btn" onClick={toggleModal}>
           <Image
             src="/assets/icon-delete.svg"
             alt="link"
@@ -69,6 +73,8 @@ const Navbar = ({ toggleSideBar, showSidebar }: NavbarProps) => {
             height={13}
           />
         </button>
+
+        {/* save button */}
         <button className="save-btn flex items-center" onClick={saveDoc}>
           <Image
             src="/assets/icon-save.svg"

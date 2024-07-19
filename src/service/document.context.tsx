@@ -12,7 +12,7 @@ interface DocumentContextType {
   getDocs: () => void;
   getDoc: (value: string) => void;
   saveDoc: () => void;
-  deleteDoc: (value: string) => void;
+  deleteDoc: () => void;
   handleName: (value: string) => void;
   handleContent: (value: string) => void;
   createDoc: () => void;
@@ -22,6 +22,7 @@ interface DocumentContextType {
   name: string;
   content: string;
   createdAt: string;
+  error: string;
 }
 
 interface DocumentContextProviderProps {
@@ -41,6 +42,7 @@ export const DocumentContextProvider = ({
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [createdAt, setCreatedAt] = useState("");
+  const [error, setError] = useState("");
 
   // format date to "day-month-year; 01 April 2024"
   const formatDateToLongForm = (date: Date): string => {
@@ -106,29 +108,34 @@ export const DocumentContextProvider = ({
 
   //   save a document
   const saveDoc = () => {
-    const docExists = documents.find((item) => item?.name === name);
+    setError("");
+    if (name.trim()) {
+      const docExists = documents.find((item) => item?.name === name);
 
-    let newDocs;
-    if (docExists) {
-      newDocs = documents.map((item) =>
-        item?.name == name ? { ...item, content } : item
-      );
+      let newDocs;
+      if (docExists) {
+        newDocs = documents.map((item) =>
+          item?.name == name ? { ...item, content } : item
+        );
+      } else {
+        const doc = {
+          name,
+          content,
+          createdAt: formatDateToLongForm(new Date()),
+        };
+        newDocs = [...documents, doc];
+      }
+
+      localStorage.setItem("docs", JSON.stringify(newDocs));
+      setDocuments(newDocs);
     } else {
-      const doc = {
-        name,
-        content,
-        createdAt: formatDateToLongForm(new Date()),
-      };
-      newDocs = [...documents, doc];
+      setError("File name required");
     }
-
-    localStorage.setItem("docs", JSON.stringify(newDocs));
-    setDocuments(newDocs);
   };
 
   //   delete a document
-  const deleteDoc = (value: string) => {
-    const filteredDoc = documents.filter((item) => item?.name !== value);
+  const deleteDoc = () => {
+    const filteredDoc = documents.filter((item) => item?.name !== name);
 
     localStorage.setItem("docs", JSON.stringify(filteredDoc));
     setDocuments(filteredDoc);
@@ -151,6 +158,7 @@ export const DocumentContextProvider = ({
     name,
     content,
     createdAt,
+    error
   };
 
   return (

@@ -8,11 +8,13 @@ import Preview from "@/components/preview";
 import { useState } from "react";
 import Sidebar from "@/components/sidebar";
 import { DocumentContextProvider } from "@/service/document.context";
+import DeleteModal from "@/components/delete.modal";
 
 export default function Home() {
   const [markdownText, setMarkdownText] = useState("");
   const [showMarkdown, setShowMarkdown] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const toggleSideBar = () => {
     setShowSidebar((prev) => !showSidebar);
@@ -22,15 +24,20 @@ export default function Home() {
     setShowMarkdown((prev) => !prev);
   };
 
+  const toggleModal = () => {
+    setShowModal((prev) => !prev);
+  };
+
   return (
     <DocumentContextProvider>
+      {showModal && <DeleteModal toggleModal={toggleModal}/>}
       <div className="home">
         {/* sidebar */}
         <Sidebar showSidebar={showSidebar} />
 
         <div className="home-container">
           {/* navbar */}
-          <Navbar toggleSideBar={toggleSideBar} showSidebar={showSidebar} />
+          <Navbar toggleSideBar={toggleSideBar} showSidebar={showSidebar} toggleModal={toggleModal}/>
 
           {/* hero */}
           <div className="hero flex justify-between">
