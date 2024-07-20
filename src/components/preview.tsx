@@ -5,6 +5,7 @@ import HeroHeader from "./hero_header";
 import Image from "next/image";
 import { marked } from "marked";
 import { DocumentContext } from "@/service/document.context";
+import { ThemeContext } from "@/service/theme.context";
 
 interface PreviewProps {
   markdownText: string;
@@ -21,8 +22,14 @@ const Preview = ({ markdownText, toggleMarkdown, showMarkdown }: PreviewProps) =
 
   const parsed = marked.parse(content);
   //   const parsed = marked.parse(markdownText);
+
+  const themeContext = useContext(ThemeContext);
+
+  if (!themeContext) return null;
+
+  const { theme } = themeContext; 
   return (
-    <div className={`preview  ${showMarkdown ?" hide-preview" : "show-preview"}`}>
+    <div className={`preview  ${showMarkdown ?" hide-preview" : "show-preview"} ${theme === "light" ? "light-bg" : "dark-bg"}`}>
       <HeroHeader>
         <p className="hero-header-title">preview</p>
         <button onClick={toggleMarkdown} className="eye-toggle-btn">
@@ -45,7 +52,7 @@ const Preview = ({ markdownText, toggleMarkdown, showMarkdown }: PreviewProps) =
       <div className={`preview-container ${!showMarkdown && "justify-center"}`}>
         <div
           dangerouslySetInnerHTML={{ __html: parsed }}
-          className={`preview-items ${!showMarkdown && "preview-items-center"}`}
+          className={`preview-items ${!showMarkdown && "preview-items-center"} ${theme === "light" ? "preview-light" : "preview-dark"}`}
         />
       </div>
     </div>

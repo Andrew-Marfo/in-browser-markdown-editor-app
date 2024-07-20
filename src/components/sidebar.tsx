@@ -70,7 +70,7 @@ const Sidebar = ({ showSidebar, toggleSideBar }: SidebarProps) => {
         </div> */}
       </div>
 
-      {/* <ThemeButton /> */}
+      <ThemeButton />
     </div>
   );
 };
